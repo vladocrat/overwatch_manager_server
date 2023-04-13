@@ -11,11 +11,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 
 add_executable(overwatch_manager_server
   main.cpp
+  tcpserver.h tcpserver.cpp
+  pendingconnection.h pendingconnection.cpp
+  connection.h connection.cpp
+  protocol.h
 )
-target_link_libraries(overwatch_manager_server Qt${QT_VERSION_MAJOR}::Core)
+
+target_link_libraries(overwatch_manager_server
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Network)
 
 install(TARGETS overwatch_manager_server
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
