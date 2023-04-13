@@ -19,6 +19,10 @@ add_executable(overwatch_manager_server
   pendingconnection.h pendingconnection.cpp
   connection.h connection.cpp
   protocol.h
+  configurer.h configurer.cpp
+  config.h config.cpp
+  networkconfig.h networkconfig.cpp
+  dbconfig.h dbconfig.cpp
 )
 
 target_link_libraries(overwatch_manager_server
