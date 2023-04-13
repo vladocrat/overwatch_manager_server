@@ -13,6 +13,8 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/settings.ini ${CMAKE_CURRENT_BINARY_DIR}/settings.ini COPYONLY)
+
 add_executable(overwatch_manager_server
   main.cpp
   tcpserver.h tcpserver.cpp
@@ -20,7 +22,6 @@ add_executable(overwatch_manager_server
   connection.h connection.cpp
   protocol.h
   configurer.h configurer.cpp
-  config.h config.cpp
   networkconfig.h networkconfig.cpp
   dbconfig.h dbconfig.cpp
 )

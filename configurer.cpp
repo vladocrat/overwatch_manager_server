@@ -1,28 +1,27 @@
 #include "configurer.h"
-#include "networkconfig.h"
 #include "dbconfig.h"
+
+#include <exception>
 
 namespace Config
 {
 
-Config Configurer::create(Type t)
+Configurer::Configurer(const QString& filePath):
+    m_filePath(filePath)
 {
-    QSettings settings("", QSettings::IniFormat);
 
-    switch(t)
-    {
-    case Network:
-    {
-        settings.beginGroup("Network");
-        auto address = settings.value("address", QHostAddress::LocalHost).toString();
-        auto port = settings.value("port", 8080).toUInt();
-        return NetworkConfig(QHostAddress(address), port);
-    }
-    case Database:
-        return DBConfig();
-    default:
-        break;
-    }
 }
+
+NetworkConfig Configurer::configureNetwork()
+{
+    QSettings settings(m_filePath, QSettings::IniFormat);
+    settings.beginGroup("Network");
+    qDebug() << settings.group();
+    auto address = settings.value("address").toString();
+    auto port = settings.value("port").toUInt();
+    settings.endGroup();
+    return NetworkConfig(QHostAddress(address), port);
+}
+
 
 } // Config

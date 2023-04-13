@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QSettings>
-#include "config.h"
+#include "networkconfig.h"
 
 namespace Config
 {
@@ -9,11 +9,12 @@ namespace Config
 class Configurer
 {
 public:
-    Configurer(Config& conf): m_conf(conf){}
-    Config create(Type t);
+    Configurer(const QString&);
+
+    NetworkConfig configureNetwork();
 
 private:
-    Config m_conf;
+    QString m_filePath;
 };
 
 } // Config
