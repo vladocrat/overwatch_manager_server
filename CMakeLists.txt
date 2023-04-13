@@ -15,15 +15,19 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/settings.ini ${CMAKE_CURRENT_BINARY_DIR}/settings.ini COPYONLY)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/configs)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/network)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/network/connections)
+
 add_executable(overwatch_manager_server
   main.cpp
-  tcpserver.h tcpserver.cpp
-  pendingconnection.h pendingconnection.cpp
-  connection.h connection.cpp
-  protocol.h
-  configurer.h configurer.cpp
-  networkconfig.h networkconfig.cpp
-  dbconfig.h dbconfig.cpp
+  network/tcpserver.h network/tcpserver.cpp
+  network/connections/pendingconnection.h network/connections/pendingconnection.cpp
+  network/connections/connection.h network/connections/connection.cpp
+  network/protocol.h
+  configs/configurer.h configs/configurer.cpp
+  configs/networkconfig.h configs/networkconfig.cpp
+  configs/dbconfig.h configs/dbconfig.cpp
 )
 
 target_link_libraries(overwatch_manager_server

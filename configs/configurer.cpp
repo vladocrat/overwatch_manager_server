@@ -16,7 +16,6 @@ NetworkConfig Configurer::configureNetwork()
 {
     QSettings settings(m_filePath, QSettings::IniFormat);
     settings.beginGroup("Network");
-    qDebug() << settings.group();
     auto address = settings.value("address").toString();
     auto port = settings.value("port").toUInt();
     settings.endGroup();
